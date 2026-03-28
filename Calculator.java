@@ -1,77 +1,68 @@
 import java.util.Scanner;
 
 public class Calculator {
-
-    // Method for Addition
-    public static double add(double a, double b) {
-        return a + b;
-    }
-
-    // Method for Subtraction
-    public static double subtract(double a, double b) {
-        return a - b;
-    }
-
-    // Method for Multiplication
-    public static double multiply(double a, double b) {
-        return a * b;
-    }
-
-    // Method for Division
-    public static double divide(double a, double b) {
-        if (b == 0) {
-            System.out.println("Error: Division by zero is not allowed.");
-            return 0;
-        }
-        return a / b;
-    }
-
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter first number: ");
-        double num1 = sc.nextDouble();
+        System.out.println("Enter first number: ");
+        double a = sc.nextDouble();
 
-        System.out.print("Enter second number: ");
-        double num2 = sc.nextDouble();
+        System.out.println("Enter second number: ");
+        double b = sc.nextDouble();
 
-        System.out.println("\nCalculator Operations:");
-        System.out.println("1. Addition");
-        System.out.println("2. Subtraction");
-        System.out.println("3. Multiplication");
-        System.out.println("4. Division");
-
-        System.out.print("Choose an operation (1-4): ");
-        int choice = sc.nextInt();
+        System.out.println("Choose operation (+, -, *, /, %): ");
+        char op = sc.next().charAt(0);
 
         double result = 0;
 
-        switch (choice) {
-            case 1:
-                result = add(num1, num2);
-                System.out.println("Result = " + result);
+        switch(op) {
+            case '+':
+                result = a + b;
                 break;
 
-            case 2:
-                result = subtract(num1, num2);
-                System.out.println("Result = " + result);
+            case '-':
+                result = a - b;
                 break;
 
-            case 3:
-                result = multiply(num1, num2);
-                System.out.println("Result = " + result);
+            case '*':
+                result = a * b;
                 break;
 
-            case 4:
-                result = divide(num1, num2);
-                System.out.println("Result = " + result);
+            case '/':
+                if(b != 0)
+                    result = a / b;
+                else
+                    System.out.println("Cannot divide by zero");
+                break;
+              case'%':
+              if(b != 0)
+                    result = a % b;
+                else
+                    System.out.println("Cannot divide by zero");
+
+              case '^':
+                if(a>0)
+                    result = a*a;
+                if(b>0)
+                    result = b*b;
+
+                case 's':
+                if(a>0)
+                    result = Math.sqrt(a);
+                if(b>0)
+                    result = Math.sqrt(b);
+                else {
+                    System.out.println("Cannot calculate square root of negative number");
+                }
                 break;
 
             default:
-                System.out.println("Invalid Choice!");
+                System.out.println("Invalid Operator");
+               
         }
 
+        System.out.println("Result = " + result);
+       
         sc.close();
     }
 }
